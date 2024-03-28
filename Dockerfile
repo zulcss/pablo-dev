@@ -7,7 +7,7 @@ RUN apt-get update && \
         mmdebstrap \
         bubblewrap \
         devscripts \
-        git-bildpackage \
+        git-buildpackage \
         sbuild \
         dosfstools \
         python3-pip \
