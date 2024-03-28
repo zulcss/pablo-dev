@@ -1,8 +1,9 @@
 #!/bin/bash
 
 docker run \
+     --hostname pablo-dev \
      -i -t --privileged \
-     -v $HOME/.gitconfig:/root/.gitconfig \
+     -v $HOME/.gitconfig:/home/user/.gitconfig \
      -v $(pwd)/data:/var/tmp/ruck \
      -v $(pwd)/data:/var/tmp/tiler \
      -v $(pwd)/data:/var/tmp/apt-ostree\
@@ -10,4 +11,4 @@ docker run \
      -v /run:/run \
      -v /sys:/sys \
      -v /var/tmp:/var/tmp \
-    -i -t pablo-dev
+     pablo-dev

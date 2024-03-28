@@ -26,6 +26,8 @@ RUN apt-get update && \
         fdisk \
         dosfstools \
         parted \
+        vim \
+        sudo \
         udev \
         systemd-boot \
         gir1.2-ostree-1.0 \
@@ -38,7 +40,13 @@ RUN pip install omegaconf
 # Needed for uefi-ostree
 RUN mkdir -p /var/www/html
 
-RUN git clone https://github.com/zulcss/ruck /usr/src/ruck
-RUN git clone https://github.com/zulcss/tiler /usr/src/tiler
-RUN git clone https://github.com/zulcss/apt-ostree /usr/src/apt-ostree
-RUN git clone https://github.com/zulcss/pablo-config /usr/src/pablo-config
+RUN useradd -ms /bin/bash user
+RUN echo "user ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/nopasswd
+USER user
+
+RUN git clone https://github.com/zulcss/ruck /home/user/ruck
+RUN git clone https://github.com/zulcss/tiler /home/user/tiler
+RUN git clone https://github.com/zulcss/apt-ostree /home/user/apt-ostree
+RUN git clone https://github.com/zulcss/pablo-config /home/user/pablo-config
+
+WORKDIR /home/user
