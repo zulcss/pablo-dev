@@ -37,8 +37,9 @@ RUN apt-get update && \
         git && \
         rm -rf /var/lib/apt/lists/*
 
+# Extra python installs and configurations
 COPY files/pip.conf /etc/pip.conf
-RUN pip install omegaconf
+RUN pip install omegaconf tox autopep8
 
 # Needed for uefi-ostree
 RUN mkdir -p /var/www/html
