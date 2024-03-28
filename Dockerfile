@@ -6,6 +6,9 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         mmdebstrap \
         bubblewrap \
+        devscripts \
+        git-bildpackage \
+        sbuild \
         dosfstools \
         python3-pip \
         python3-yaml \
