@@ -7,6 +7,7 @@ RUN apt-get update && \
         mmdebstrap \
         bubblewrap \
         devscripts \
+        openssh-client \
         git-buildpackage \
         sbuild \
         dosfstools \
@@ -37,6 +38,8 @@ RUN apt-get update && \
         git && \
         rm -rf /var/lib/apt/lists/*
 
+RUN if [ "$(uname -m)" = "x86_64" ]; then apt update && apt install qemu-user-static arch-test -y; fi
+
 # Extra python installs and configurations
 COPY files/pip.conf /etc/pip.conf
 RUN pip install omegaconf tox autopep8
@@ -47,10 +50,5 @@ RUN mkdir -p /var/www/html
 RUN useradd -ms /bin/bash user
 RUN echo "user ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/nopasswd
 USER user
-
-RUN git clone https://github.com/zulcss/ruck /home/user/ruck
-RUN git clone https://github.com/zulcss/tiler /home/user/tiler
-RUN git clone https://github.com/zulcss/apt-ostree /home/user/apt-ostree
-RUN git clone https://github.com/zulcss/pablo-config /home/user/pablo-config
 
 WORKDIR /home/user
