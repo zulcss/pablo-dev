@@ -34,6 +34,7 @@ RUN apt-get update && \
         sudo \
         udev \
         systemd-boot \
+        qemu-utils \
         gir1.2-ostree-1.0 \
         git && \
         rm -rf /var/lib/apt/lists/*
